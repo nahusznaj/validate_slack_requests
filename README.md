@@ -4,7 +4,7 @@
 To include a security measure in your Slack app, you can validate that the request that is coming from Slack to your app. This uses payload that Slack includes in the requests, and the app's `Signing Secret` which is shown in the apps configuration page: `https://api.slack.com/apps/{AppID}/general?`
 
 The script in this repo is a Flask application that I wrote following [Slack docs](https://api.slack.com/authentication/verifying-requests-from-slack).
-
+ 
 
 ## Steps to run the app
 
