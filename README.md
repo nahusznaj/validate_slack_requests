@@ -46,3 +46,40 @@ Now port 5000 in your local machine is listening.
 To test this with Slack, I used `ngrok` and create a public internet URL. Here's [instructions](https://nahusznaj.github.io/learning/ngrok-alias/) on setting up ngrok.
 
 Once you try your command and Slack requests the ngrok URL, you'll see the response in Slack and in your terminal Flask logs.
+
+
+## Slack's incoming request
+
+For reference, the request this app is able to validate has this form (note that this was triggered from a user in Slack running a forward slash command):
+
+HEADERS
+```
+Host: public.url.for.your.app
+User-Agent: Slackbot 1.0 (+https://api.slack.com/robots)
+Accept-Encoding: gzip,deflate
+Accept: application/json,*/*
+X-Slack-Signature: v0=XXXXXXX_signature
+X-Slack-Request-Timestamp: 1619186236
+Content-Length: 425
+Content-Type: application/x-www-form-urlencoded
+X-Forwarded-Proto: https
+X-Forwarded-For: A.VALID.IP.20.176.196
+```
+
+BODY
+```
+{'api_app_id': 'appID',
+ 'channel_id': 'channelID',
+ 'channel_name': 'channelName',
+ 'command': '/thecommand',
+ 'is_enterprise_install': 'false',
+ 'response_url': 'https://hooks.slack.com/commands/MOREINFO',
+ 'team_domain': 'workspace',
+ 'team_id': 'teamID',
+ 'text': 'input text',
+ 'token': 'app token',
+ 'trigger_id': 'triggerID',
+ 'user_id': 'userID',
+ 'user_name': 'userName'}
+```
+
